@@ -19,8 +19,17 @@ module Chess
       human_move_to_coordinates(human_move)
     end
 
+    def move(from, to)
+      return :empty if from.value.nil?
+      return :not_your_piece if from.value.belongs_to?(@other_player)
+      return :blocked if to.value.belongs_to?(@current_player)
+      return :invalid_move unless to.valid_move?(from.value)
+      @current_player.taken << cell.value
+      from.value, to.value = nil, from.value
+    end
+
     def game_over_message
-      return "#{current_player.name} won!" if board.game_over == :winner
+      return "#{current_player.name} won!" if board.game_over == :checkmate
       return "The game ended in a tie" if board.game_over == :draw
     end
 
@@ -30,9 +39,8 @@ module Chess
         board.formatted_grid
         puts ""
         puts solicit_move
-        x = get_move
-        y = board.first_empty_cell(x)
-        board.set_cell(x, y, current_player.color)
+        from, to = get_move ## < What does this return? A Nested Array? Cell instances?
+        move(from, to, current_player.color)
         if board.game_over
           puts game_over_message
           board.formatted_grid
@@ -46,8 +54,6 @@ module Chess
     private
      
       def human_move_to_coordinates(human_move)
-        # binding.pry
-        human_move.split('')
       end
 
   end
