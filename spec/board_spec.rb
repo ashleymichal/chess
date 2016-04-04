@@ -52,27 +52,30 @@ module Chess
     let(:white) { TestCell.new("W") }
     let(:black) { TestCell.new("B") }
     let(:empty) { TestCell.new }
+
+    context "#check?"
+    
     context "#game_over" do
-      it "returns :winner if winner? is true" do
+      it "returns :checkmate if checkmate? is true" do
         board = Board.new
-        allow(board).to receive(:winner?) { true }
-        expect(board.game_over).to eq :winner
+        allow(board).to receive(:checkmate?) { true }
+        expect(board.game_over).to eq :checkmate
       end
 
-      it "returns :draw if winner? is false and draw? is true" do
+      it "returns :draw if checkmate? is false and draw? is true" do
         board = Board.new
-        allow(board).to receive(:winner?) { false }
+        allow(board).to receive(:checkmate?) { false }
         allow(board).to receive(:draw?) { true }
         expect(board.game_over).to eq :draw
       end
 
-      it "returns false if winner? is false and draw? is false" do
+      it "returns false if checkmate? is false and draw? is false" do
         board = Board.new
-        allow(board).to receive(:winner?) { false }
+        allow(board).to receive(:checkmate?) { false }
         allow(board).to receive(:draw?) { false }
         expect(board.game_over).to be false
       end
-      
+
     end
   end
   
