@@ -1,9 +1,6 @@
 module Chess
-  class Knight
-    MOVES = [ [ 1,2], [ 1,-2],
-              [-1,2], [-1,-2],
-              [ 2,1], [ 2,-1],
-              [-2,1], [-2,-1] ]
+  class Rook
+    MOVES = (-8..8).map { |n| [[0, n], [n, 0]] }.flatten(1).uniq
 
     def initialize
     end

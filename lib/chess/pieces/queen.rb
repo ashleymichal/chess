@@ -1,9 +1,6 @@
 module Chess
-  class Knight
-    MOVES = [ [ 1,2], [ 1,-2],
-              [-1,2], [-1,-2],
-              [ 2,1], [ 2,-1],
-              [-2,1], [-2,-1] ]
+  class Queen
+    MOVES = Rook::MOVES + Bishop::MOVES
 
     def initialize
     end
