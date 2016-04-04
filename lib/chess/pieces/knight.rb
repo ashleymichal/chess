@@ -1,5 +1,7 @@
 module Chess
   class Knight
+    include GamePiece
+    
     MOVES = [ [ 1,2], [ 1,-2],
               [-1,2], [-1,-2],
               [ 2,1], [ 2,-1],
@@ -8,8 +10,9 @@ module Chess
     def initialize
     end
 
-    def possible_moves(position)
-      MOVES.map { |move| [position,move].transpose.map { |x| x.reduce(:+) } }
+    def moves
+      MOVES
     end
+
   end
 end

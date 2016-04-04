@@ -1,12 +1,14 @@
 module Chess
   class Queen
+    include GamePiece
+
     MOVES = Rook::MOVES + Bishop::MOVES
 
     def initialize
     end
 
-    def possible_moves(position)
-      MOVES.map { |move| [position,move].transpose.map { |x| x.reduce(:+) } }
+    def moves
+      MOVES
     end
   end
 end

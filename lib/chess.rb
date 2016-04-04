@@ -4,6 +4,8 @@ require_relative "chess/player.rb"
 require_relative "chess/board.rb"
 require_relative "chess/game.rb"
 
+require_relative "chess/pieces/game_piece.rb"
+
 require_relative "chess/pieces/knight.rb"
 require_relative "chess/pieces/rook.rb"
 require_relative "chess/pieces/bishop.rb"
